@@ -99,7 +99,7 @@ class Crawler
                 else 1
                 end
             )
-            where itemId=:item_id and viewItemURL=:view_item_url',
+            where itemId=:item_id and viewItemURL=:view_item_url and where DATE(updated_at) != CURDATE()',
             item_id: u[:item_id], view_item_url: u[:view_item_url]
           ])
         con.execute sql
