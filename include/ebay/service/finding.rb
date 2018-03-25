@@ -14,14 +14,14 @@ class Ebay
         'itemFilter(1).name' => 'MinPrice',
         'itemFilter(1).value' => min_price.to_s,
         'itemFilter(1).paramName' => 'Currency',
-        'itemFilter(1).paramValue' => 'USD'
+        'itemFilter(1).paramValue' => 'CNY'
       }
       if max_price then
         param.merge!({
           'itemFilter(2).name' => 'MaxPrice',
           'itemFilter(2).value' => max_price.to_s,
           'itemFilter(2).paramName' => 'Currency',
-          'itemFilter(2).paramValue' => 'USD'
+          'itemFilter(2).paramValue' => 'CNY'
         })
       end
       param.merge!({
