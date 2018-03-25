@@ -1,0 +1,4 @@
+/vendor
+/tmp/pids/*.pid
+/log/*.log
+/config/*
