@@ -1,0 +1,16 @@
+db:
+  production:
+    adapter:  mysql2
+    host:     ebaycrawler-stg-mysql.cgy09fqtmrvy.ap-northeast-1.rds.amazonaws.com
+    username: ebaycrawler
+    password: QWERTYhgfdsa123456
+    database: ebaycrawler
+    encoding: utf8mb4
+
+  development:
+    adapter:  mysql2
+    host:     192.168.33.11
+    username: ebay_demo
+    password: QWERTYhgfdsa!@#456
+    database: ebay_demo
+    encoding: utf8mb4
