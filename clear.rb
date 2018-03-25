@@ -17,11 +17,7 @@ retryset = Sidekiq::RetrySet.new
 deadset = Sidekiq::DeadSet.new
 processset = Sidekiq::ProcessSet.new
 workers = Sidekiq::Workers.new
-puts "queue size: #{queue.size}"
-puts "retryset size: #{retryset.size}"
-puts "deadset size: #{deadset.size}"
-puts "processset size: #{processset.size}"
-puts "workers size: #{workers.size}"
 queue.clear
 retryset.clear
 deadset.clear
+puts 'cleared queue, retryset and deadset'
