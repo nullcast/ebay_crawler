@@ -115,5 +115,10 @@ class Crawler
       seller.countPositive = month_positive.to_i
       seller
     }, on_duplicate_key_update: [:name])
+
+    # distinct
+    con = ActiveRecord::Base.connection
+    con.execute('DELETE FROM products WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM products GROUP BY itemID, viewItemURL) as tmp)')
+    con.execute('DELETE FROM sellers WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM sellers GROUP BY name) as tmp)')
   end
 end
