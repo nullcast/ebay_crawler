@@ -102,6 +102,7 @@ require 'active_record'
 require 'activerecord-import/base'
 while queue.size || workers.size do
   sleep(10)
+  puts "queue: #{queue.size}, worker: #{workers.size}"
 end
 
 puts 'end workers'
