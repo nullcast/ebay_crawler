@@ -100,7 +100,7 @@ workers = Sidekiq::Workers.new
 
 require 'active_record'
 require 'activerecord-import/base'
-while queue.size || workers.size do
+while !queue.size.zero? || !workers.size.zero? do
   sleep(10)
   puts "queue: #{queue.size}, worker: #{workers.size}"
 end
