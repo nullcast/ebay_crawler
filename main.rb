@@ -85,6 +85,7 @@ categories.each do |cat|
     end
     if !span then
       span = 1
+      update(cat, current_price, current_price+span)
       current_price += span
       count = $ebay.find_items_advanced(cat, 1, 1, current_price, current_price+span)['findItemsAdvancedResponse'][0]['paginationOutput'][0]['totalEntries'][0].to_i
     end
