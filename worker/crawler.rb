@@ -82,29 +82,29 @@ class Crawler
     Product.import p_insert
 
     # update
-    ActiveRecord::Base.transaction do
-      con = ActiveRecord::Base.connection
-      p_update.each do |u|
-        sql = ActiveRecord::Base.send(
-          :sanitize_sql_array,
-          ['update products
-            set countDayAppear=(
-                case 
-                when countDayAppear<30 then countDayAppear+1
-                else 1
-                end
-            ), isDelete=0, isReproduct=(
-                case 
-                when countDayAppear<30 then isReproduct
-                else 1
-                end
-            )
-            where itemId=:item_id and viewItemURL=:view_item_url and DATE(updated_at) != CURDATE()',
-            item_id: u[:item_id], view_item_url: u[:view_item_url]
-          ])
-        con.execute sql
-      end
+    #ActiveRecord::Base.transaction do
+    con = ActiveRecord::Base.connection
+    p_update.each do |u|
+      sql = ActiveRecord::Base.send(
+        :sanitize_sql_array,
+        ['update products
+          set countDayAppear=(
+              case 
+              when countDayAppear<30 then countDayAppear+1
+              else 1
+              end
+          ), isDelete=0, isReproduct=(
+              case 
+              when countDayAppear<30 then isReproduct
+              else 1
+              end
+          )
+          where itemId=:item_id and viewItemURL=:view_item_url and DATE(updated_at) != CURDATE()',
+          item_id: u[:item_id], view_item_url: u[:view_item_url]
+        ])
+      con.execute sql
     end
+    #end
 
     # seller bulk insert
     Seller.import(s_insert.map{|s_n|
