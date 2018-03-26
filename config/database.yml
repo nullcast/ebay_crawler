@@ -6,6 +6,7 @@ db:
     password: QWERTYhgfdsa123456
     database: ebaycrawler
     encoding: utf8mb4
+    pool: 12
 
   development:
     adapter:  mysql2
@@ -14,3 +15,4 @@ db:
     password: QWERTYhgfdsa!@#456
     database: ebay_demo
     encoding: utf8mb4
+    pool: 12
