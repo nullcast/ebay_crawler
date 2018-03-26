@@ -102,9 +102,9 @@ require 'active_record'
 require 'activerecord-import/base'
 while queue.size || workers.size do
   sleep(10)
-  con = ActiveRecord::Base.connection
-  con.execute('DELETE FROM products WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM products GROUP BY itemID, viewItemURL) as tmp)')
-  con.execute('DELETE FROM sellers WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM sellers GROUP BY name) as tmp)')
-  queue = Sidekiq::Queue.new
-  workers = Sidekiq::Workers.new
 end
+
+puts 'end workers'
+con = ActiveRecord::Base.connection
+con.execute('DELETE FROM products WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM products GROUP BY itemID, viewItemURL) as tmp)')
+con.execute('DELETE FROM sellers WHERE id NOT IN (SELECT min_id from (SELECT MIN(id) min_id FROM sellers GROUP BY name) as tmp)')
