@@ -55,7 +55,7 @@ def update(category_id, min_price, max_price=nil)
     result = $ebay.find_items_advanced(category_id, 100, page_number, min_price, max_price)
     Crawler.perform_async(result)
 
-    break if page_number == result['findItemsAdvancedResponse'][0]['paginationOutput'][0]['totalPages'][0].to_i
+    break if page_number == result['findItemsAdvancedResponse'][0]['paginationOutput'][0]['totalPages'][0].to_i || page_number >= 100
     page_number += 1
   end
 end
